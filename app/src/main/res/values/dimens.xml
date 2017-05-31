@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_medium">27sp</dimen>
+    <dimen name="height_card">352dp</dimen>
+    <dimen name="radius_cornet">8dp</dimen>
+    <dimen name="height_photo">226dp</dimen>
+    <dimen name="height_info_panel">126dp</dimen>
+    <dimen name="text_size_heavy">20sp</dimen>
+    <dimen name="text_size_smal">14sp</dimen>
+</resources>
