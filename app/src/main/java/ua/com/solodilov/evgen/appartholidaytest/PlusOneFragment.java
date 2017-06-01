@@ -3,10 +3,12 @@ package ua.com.solodilov.evgen.appartholidaytest;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -37,9 +39,12 @@ public class PlusOneFragment extends Fragment {
     protected SFTextView mNightMonth;
     @BindView(R.id.progress)
     protected ProgressBar mProgress;
+    @BindView(R.id.floatingActionButton)
+    protected FloatingActionButton mFavor;
 
     private final int MAX_ATTEMPTS = 3;
     private int mNumberOfAttempts = 0;
+    private boolean mSelectedFavor = false;
 
     private static final String CITY_NAME = "Шарм";
 
@@ -64,7 +69,31 @@ public class PlusOneFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mFavor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFavor.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.anim_favor_on));
+                eventFavor(mSelectedFavor);
+           }
 
+            private void eventFavor(boolean selectedFavor) {
+                mSelectedFavor = !selectedFavor;
+                if(mSelectedFavor){
+                    mFavor.setImageResource(R.drawable.favorit_heart_selected);
+                    addInFavoritesList();
+                }else {
+                    mFavor.setImageResource(R.drawable.favorit_heart);
+                    removeInFavoritesList();
+                }
+            }
+        });
+
+    }
+
+    private void removeInFavoritesList() {
+    }
+
+    private void addInFavoritesList() {
     }
 
     private void startGettingData() {
